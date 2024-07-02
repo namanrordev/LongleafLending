@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "loans#index"
+  root "loan_users#new"
 
-  resources :loans
+  resource :loan_users, only: [:new, :create, :show]
 end

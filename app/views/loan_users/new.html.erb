@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step-by-Step Form</title>
+</head>
+<!-- app/views/steps/index.html.erb -->
+<body class="flex justify-center items-center h-screen">
+  <%= image_tag("logo/longleaf.jpeg", class: 'logo')%> 
+  <div class="w-full max-w-md bg-white p-8 rounded shadow-md">
+    <h1 class="text-xl font-bold mb-4" id="form-label">Start Here</h1>
+    <div id="step-start" data-controller="loan">
+      <button type="button" id="cal-profit" class="mt-4 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-700">Calculate my profit</button>
+      <span>Please <strong>Enter ↵</strong></span>
+    </div>
+    <%= form_with(model: LoanUser.new, id: 'stepForm', data: {turbo: false} , method: :post) do |form| %>
+      <div class="step hidden" id="step-address">
+        <span class="inline-block">1.</span>
+        <%= form.label :address, "Address*", class: "inline-block mb-2 text-sm font-bold" %>
+        <%= form.text_field :address, class: "w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+        <button type="button" id="address-next" class="mt-4 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-700">OK</button>
+        <span>Please <strong>Enter ↵</strong></span>
+      </div>
+      <div class="step hidden" id="step-loanTerm">
+        <span class="inline-block">2.</span>
+        <%= form.label :loan_term, "Loan Term (Months)*", class: "inline-block mb-2 text-sm font-bold" %>
+        <%= form.text_field :loan_term, class: "w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+        <button type="button" id="loanTerm-next" class="mt-4 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-700">OK</button>
+        <span>Please <strong>Enter ↵</strong></span>
+      </div>
+      <div class="step hidden" id="step-purchasePrice">
+        <span class="inline-block">3.</span>
+        <%= form.label :purchase_price, "Purchase Price*", class: "inline-block mb-2 text-sm font-bold" %>
+        <%= form.text_field :purchase_price, class: "w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+        <button type="button" id="purchasePrice-next" class="mt-4 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-700">OK</button>
+        <span>Please <strong>Enter ↵</strong></span>
+      </div>
+      <div class="step hidden" id="step-repairBudget">
+        <span class="inline-block">4.</span>
+        <%= form.label :repair_budget, "Repair Budget*", class: "inline-block mb-2 text-sm font-bold" %>
+        <%= form.text_field :repair_budget, class: "w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+        <button type="button" id="repairBudget-next" class="mt-4 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-700">OK</button>
+        <span>Please <strong>Enter ↵</strong></span>
+      </div>
+      <div class="step hidden" id="step-arv">
+        <span class="inline-block">5.</span>
+        <%= form.label :arv, "After Repair Value (ARV)*", class: "inline-block mb-2 text-sm font-bold" %>
+        <%= form.text_field :arv, class: "w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+        <button type="button" id="arv-next" class="mt-4 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-700">OK</button>
+        <span>Please <strong>Enter ↵</strong></span>
+      </div>
+      <div class="step hidden" id="step-personal-details">
+        <div>
+          <span class="inline-block">6.</span>
+          <%= form.label :name, "Name*", class: "inline-block mb-2 text-sm font-bold" %>
+          <%= form.text_field :name, class: "w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+        </div>
+        <div>
+          <span class="inline-block">7.</span>
+          <%= form.label :email, "Email*", class: "inline-block mb-2 text-sm font-bold" %>
+          <%= form.email_field :email, class: "w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+        </div>
+        <div>
+          <span class="inline-block">6.</span>
+          <%= form.label :phone, "Phone*", class: "inline-block mb-2 text-sm font-bold" %>
+          <%= form.text_field :phone, class: "w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+          <button type="submit" id="submit" class="mt-4 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-700">OK</button>
+          <span>Please <strong>Enter ↵</strong></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</body>
+</html>

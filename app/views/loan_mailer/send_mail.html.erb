@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample term sheet with additional loan information.</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f8f9fa;
+    }
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+    }
+    .logo {
+      max-width: 150px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .details {
+      margin-top: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #dee2e6;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="assets/images/logo/longleaf.jpeg" alt="Logo" class="logo">
+    <h1>Hi <%= @loan_user.name %>, please find your sample term sheet with additional loan information.</h1>
+    <div class="details">
+      <table>
+        <tr>
+          <th>Email</th>
+          <td><%= @loan_user.email %></td>
+        </tr>
+        <tr>
+          <th>Address</th>
+          <td><%= @loan_user.address %></td>
+        </tr>
+        <tr>
+          <th>Phone</th>
+          <td><%= @loan_user.phone %></td>
+        </tr>
+        <tr>
+          <th>Loan Term</th>
+          <td><%= @loan_user.loan_term %> months</td>
+        </tr>
+        <tr>
+          <th>Purchase Price</th>
+          <td><%= @loan_user.purchase_price %></td>
+        </tr>
+        <tr>
+          <th>Repair Budget</th>
+          <td><%= @loan_user.repair_budget %></td>
+        </tr>
+        <tr>
+          <th>After Repair Value (ARV)</th>
+          <td><%= @loan_user.arv %></td>
+        </tr>
+        <tr>
+          <th>Loan Amount</th>
+          <td><%= @loan_user.loan_detail.max_fundable_amount %></td>
+        </tr>
+        <tr>
+          <th>Interest Expense</th>
+          <td><%= @loan_user.loan_detail.total_interest_expense %></td>
+        </tr>
+        <tr>
+          <th>Estimated Profit</th>
+          <td><%= @loan_user.loan_detail.estimated_profit %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
