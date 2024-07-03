@@ -2,7 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    alert();
     function removeErrors() {
         $('.error').remove();
         $('#err-name').remove();
@@ -14,7 +13,7 @@ export default class extends Controller {
     function validateNumericInput(inputId, stepId) {
         const value = $(inputId).val();
         if (value !== '' && !$.isNumeric(value)) {
-            $(stepId).append('<label class="error block text-red-900">Numeric value only.</label>');
+            $(inputId).after('<label class="error absolute block text-red-900">Numeric value only.</label>');
         }
     }
 
@@ -49,9 +48,9 @@ export default class extends Controller {
         removeErrors();
         const value = $(inputId).val();
         if (value === '') {
-            $(currentStep).append('<label class="error block text-red-900">Please fill this field</label>');
+            $(inputId).after('<label class="error absolute block text-red-900">Please fill this field</label>');
         } else if (numeric && !$.isNumeric(value)) {
-            $(currentStep).append('<label class="error block text-red-900">Numeric value only.</label>');
+            $(inputId).after('<label class="error absolute block text-red-900">Numeric value only.</label>');
         } else {
             $(nextStep).removeClass('hidden');
             $(currentStep).addClass('hidden');
@@ -91,24 +90,24 @@ export default class extends Controller {
         }
         
         if (email === '') {
-            $('#loan_user_email').after('<label id="err-email" class="block text-red-900">Please fill this field</label>');
+            $('#loan_user_email').after('<label id="err-email" class="block absolute text-red-900">Please fill this field</label>');
             event.preventDefault();
         } else if (!emailRegex.test(email)) {
-            $('#loan_user_email').after('<label id="err-email" class="block text-red-900">Please enter a valid email address</label>');
+            $('#loan_user_email').after('<label id="err-email" class="block absolute text-red-900">Please enter a valid email address</label>');
             event.preventDefault();
         }
 
         if (phone === '') {
-            $('#loan_user_phone').after('<label id="err-phone" class="block text-red-900">Please fill this field</label>');
+            $('#loan_user_phone').after('<label id="err-phone" class="block absolute text-red-900">Please fill this field</label>');
             event.preventDefault();
         }else if(!$.isNumeric(phone)) {
-            $('#loan_user_phone').after('<label id="err-phone" class="block text-red-900">Numeric value only.</label>');
+            $('#loan_user_phone').after('<label id="err-phone" class="block absolute text-red-900">Numeric value only.</label>');
             event.preventDefault();
         }
 
 
         
-        if (name !== '' && email !== '' && emailRegex.test(email)) {
+        if (name !== '' && email !== '' && phone !== '' && $.isNumeric(phone) && emailRegex.test(email)) {
             $('#step-personal-details').addClass('hidden');
             $('#submit').attr('disabled', false);
         }
