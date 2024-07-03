@@ -1,14 +1,16 @@
 class LoanUsersController < ApplicationController
 
   def create
-    loan_user = LoanUser.new(loan_user_params)
+    @loan_user = LoanUser.new(loan_user_params)
 
 
-    if loan_user.save
+    if @loan_user.save
       @message = 'toto'
-      SendLoandetailsJob.perform_later(loan_user)
+      SendLoandetailsJob.perform_later(@loan_user)
+
+      render html: "<div><p style='text-align: center;'>Thanks, #{@loan_user.name}! Here are those figures we promised.</p><p style='text-align: center;'>And again, check your email for the Longleaf term sheet</p><p style='text-align: center;'>Your Estimated Profit: $#{@loan_user.loan_detail.estimated_profit}</p><p style='text-align: center;'>Loan Amount: $#{@loan_user.loan_detail.max_fundable_amount}</p></div>".html_safe
     else
-      @message = loan_user.errors.messages
+      render html: @loan_user.errors.messages
     end
   end
 
@@ -18,10 +20,8 @@ class LoanUsersController < ApplicationController
         @loan_user = LoanUser.find(params[:id])
 
         SendLoandetailsJob.perform_later(@loan_user)
-      end
 
-      format.pdf do
-        send_data PdfGenerator.new(@loan_user).print_data, filename:'loan_calculator.pdf', type: "application/pdf", disposition: :attachment
+        render html: '<p style= "text-align: center;">Sent Details To Your Mail</p>'.html_safe
       end
     end
   end

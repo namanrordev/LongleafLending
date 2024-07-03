@@ -1,9 +1,10 @@
 class LoanMailer < ApplicationMailer
   default from: 'abc@gmail.com'
 
-  def send_mail(loan_user)
+  def send_mail(loan_user, pdf_content)
     @loan_user = loan_user
+    attachments["loan_calculator.pdf"] = pdf_content
 
-    mail(to: 'test@yopmail.com', subject: 'New registration page submission')
+    mail(to: loan_user.email, subject: 'Loan Details')
   end
 end

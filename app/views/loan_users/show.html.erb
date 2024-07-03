@@ -1,9 +1,23 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>We mailed you your loan calulator !!!</h1>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample term sheet with additional loan information.</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Hi <%= loan_user.name %>, please check your sample term sheet with additional loan information.</h1>
+    <h3 style="text-align: center;"><strong>Address: </strong><%= loan_user.address %></h4>
+    <h3 style="text-align: center;"><strong>Email: </strong><%= loan_user.email %></h4>
+    <h3 style="text-align: center;"><strong>Phone: </strong><%= loan_user.phone %></h4>
+    <h3 style="text-align: center;"><strong>Loan Term: </strong><%= loan_user.loan_term %> months</h4>
+    <h3 style="text-align: center;"><strong>Purchase Price: </strong>$ <%= loan_user.purchase_price %></h4>
+    <h3 style="text-align: center;"><strong>Repair Budget: </strong>$ <%= loan_user.repair_budget %></h4>
+    <h3 style="text-align: center;"><strong>ARV: </strong>$ <%= loan_user.arv %></h4>
+    <h3 style="text-align: center;"><strong>Loan Amount: </strong>$ <%= loan_user.loan_detail.max_fundable_amount %></h4>
+    <h3 style="text-align: center;"><strong>Total Interest Expense: </strong>$ <%= loan_user.loan_detail.total_interest_expense %></h4>
+    <h3 style="text-align: center;"><strong>Estimated Profit: </strong>$ <%= loan_user.loan_detail.estimated_profit %></h4>
+  </div>
+</body>
 </html>

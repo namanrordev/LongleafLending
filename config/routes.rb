@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "loan_users#new"
 
-  resource :loan_users, only: [:new, :create, :show]
+  resources :loan_users, only: [:new, :create, :show]
 end

@@ -27,8 +27,11 @@ gem "stimulus-rails"
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
 gem "tailwindcss-rails", "~> 2.2"
 
-# Use prawn-html for generating pdf
-gem "prawn-html"
+# Prawn for PDF generation
+gem 'prawn', '~> 2.4'
+
+# Prawn-HTML for HTML to PDF conversion with styles
+gem 'prawn-html', '~> 0.2'
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
